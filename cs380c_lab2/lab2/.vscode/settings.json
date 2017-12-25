@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "memory": "cpp",
+    "utility": "cpp",
+    "__bit_reference": "cpp",
+    "__split_buffer": "cpp",
+    "__tree": "cpp",
+    "deque": "cpp",
+    "initializer_list": "cpp",
+    "iterator": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
+  }
+}

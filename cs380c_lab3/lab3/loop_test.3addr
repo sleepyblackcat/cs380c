@@ -1,0 +1,14 @@
+    instr 1: nop
+    instr 2: entrypc
+    instr 3: enter 16
+    instr 4: move 0 a#-8
+    instr 5: cmplt a#-8 10
+    instr 6: blbc (5) [11]
+    instr 7: move 0 b#-16
+    instr 8: add a#-8 1
+    instr 9: move (8) a#-8
+    instr 10: br [5]
+    instr 11: write a#-8
+    instr 12: wrl
+    instr 13: ret 0
+    instr 14: nop
