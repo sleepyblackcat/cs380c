@@ -1,19 +1,19 @@
+#include <algorithm>
 #include <cstring>
 #include <iostream>
-#include <string>
-#include <stack>
-#include <stdio.h>
-#include <utility>
-#include <algorithm>
-#include <vector>
 #include <map>
 #include <set>
+#include <stack>
+#include <stdio.h>
+#include <string>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
-vector<string> interins;
-vector<string> ariins;
-map<string, string> arithin;
+extern vector<string> interins;
+extern vector<string> ariins;
+extern map<string, string> arithin;
 
 /*Definition in func*/
 typedef struct Definition {
@@ -39,7 +39,8 @@ int parse_br(string code);
 
 /*util funcs*/
 void init();
-string& replace_all(string& str,const string& old_value,const string& new_value);
+string &replace_all(string &str, const string &old_value,
+                    const string &new_value);
 bool equalvec(vector<int>::iterator itb, vector<int>::iterator ite);
 bool iscons(string value);
 int str2int(string str);

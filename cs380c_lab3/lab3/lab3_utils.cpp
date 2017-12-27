@@ -1,4 +1,9 @@
 #include "lab3.hpp"
+using namespace std;
+
+vector<string> interins;
+vector<string> ariins;
+map<string, string> arithin;
 
 void init() {
   /*initialization the arithin*/

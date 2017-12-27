@@ -15,6 +15,18 @@
     "iterator": "cpp",
     "iosfwd": "cpp",
     "__functional_03": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "algorithm": "cpp",
+    "stack": "cpp",
+    "utility": "cpp",
+    "ratio": "cpp",
+    "__functional_base": "cpp",
+    "atomic": "cpp",
+    "chrono": "cpp",
+    "limits": "cpp",
+    "locale": "cpp",
+    "memory": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp"
   }
 }
