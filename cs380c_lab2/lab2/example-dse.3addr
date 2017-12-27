@@ -1,0 +1,80 @@
+    instr 1: nop
+    instr 2: entrypc
+    instr 3: enter 2424
+    instr 4: move 0 i#-2408
+    instr 5: move 0 j#-2416
+    instr 6: move 0 k#-2424
+    instr 7: cmplt i#-2408 100
+    instr 8: blbc (7) [16]
+    instr 9: mul i#-2408 8
+    instr 10: add m_base#-800 FP
+    instr 11: add (10) (9)
+    instr 12: store i#-2408 (11)
+    instr 13: add i#-2408 1
+    instr 14: move (13) i#-2408
+    instr 15: br [7]
+    instr 16: move 0 i#-2408
+    instr 17: cmplt i#-2408 100
+    instr 18: blbc (17) [56]
+    instr 19: mul i#-2408 8
+    instr 20: add m_base#-800 FP
+    instr 21: add (20) (19)
+    instr 22: load (21)
+    instr 23: mod (22) 2
+    instr 24: move (23) j#-2416
+    instr 25: cmpeq j#-2416 0
+    instr 26: blbc (25) [40]
+    instr 27: mul i#-2408 16
+    instr 28: add mm_base#-2400 FP
+    instr 29: add (28) (27)
+    instr 30: mul 1 8
+    instr 31: add (29) (30)
+    instr 32: mul i#-2408 8
+    instr 33: add m_base#-800 FP
+    instr 34: add (33) (32)
+    instr 35: mul i#-2408 2
+    instr 36: load (34)
+    instr 37: add (36) (35)
+    instr 38: store (37) (31)
+    instr 39: br [52]
+    instr 40: mul i#-2408 16
+    instr 41: add mm_base#-2400 FP
+    instr 42: add (41) (40)
+    instr 43: mul 0 8
+    instr 44: add (42) (43)
+    instr 45: mul i#-2408 8
+    instr 46: add m_base#-800 FP
+    instr 47: add (46) (45)
+    instr 48: mod i#-2408 2
+    instr 49: load (47)
+    instr 50: sub (49) (48)
+    instr 51: store (50) (44)
+    instr 52: add i#-2408 1
+    instr 53: move (52) i#-2408
+    instr 54: wrl
+    instr 55: br [17]
+    instr 56: move 0 i#-2408
+    instr 57: cmplt i#-2408 100
+    instr 58: blbc (57) [79]
+    instr 59: move 0 j#-2416
+    instr 60: move i#-2408 k#-2424
+    instr 61: cmple i#-2408 j#-2416
+    instr 62: blbs (61) [75]
+    instr 63: mod j#-2416 2
+    instr 64: cmpeq (63) 0
+    instr 65: blbc (64) [72]
+    instr 66: mul j#-2416 8
+    instr 67: add m_base#-800 FP
+    instr 68: add (67) (66)
+    instr 69: load (68)
+    instr 70: add k#-2424 (69)
+    instr 71: move (70) k#-2424
+    instr 72: add j#-2416 1
+    instr 73: move (72) j#-2416
+    instr 74: br [61]
+    instr 75: add i#-2408 1
+    instr 76: move (75) i#-2408
+    instr 77: write k#-2424
+    instr 78: br [57]
+    instr 79: ret 0
+    instr 80: nop
