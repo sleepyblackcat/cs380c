@@ -25,7 +25,7 @@ vector<vector<int>> cfg_goto;
 
 map<int, Def> def_t;
 set<string> defname;
-map<string, string> def_value;
+
 int counter;
 
 void create_def();
@@ -117,26 +117,11 @@ int main()
 
             insert_fi();
 
-            for (vector<string>::iterator it = modi3add.begin(); it != modi3add.end(); it++)
-            {
-                string code = *it;
-                string op = parse_ins_op(code);
-                if (op == "move")
-                {
-                    string def_name = parse_second_param(code);
-                    string value = parse_first_param(code);
-                    if (iscons(value))
-                    {
-                        def_value[def_name] = value;
-                    }
-                }
-            }
+            // int num = constant_propagate();
+            // constant_propagate_report(num);
 
-            int num = constant_propagate();
-            constant_propagate_report(num);
-
-            // int num2 = statement_hoisted();
-            // statement_hoisted_report(num2);
+            int num2 = statement_hoisted();
+            statement_hoisted_report(num2);
 
             clean_3addr();
             print_modified_3addr();
@@ -218,7 +203,6 @@ string genname()
 
 void insert_fi()
 {
-    // block edge
     map<int, vector<int>> cfg_par;
     for (unsigned i = 0; i != cfg_start.size() - 1; i++)
     {
@@ -573,6 +557,21 @@ void clean_3addr()
 
 int constant_propagate()
 {
+    map<string, string> def_value;
+    for (vector<string>::iterator it = modi3add.begin(); it != modi3add.end(); it++)
+    {
+        string code = *it;
+        string op = parse_ins_op(code);
+        if (op == "move")
+        {
+            string def_name = parse_second_param(code);
+            string value = parse_first_param(code);
+            if (iscons(value))
+            {
+                def_value[def_name] = value;
+            }
+        }
+    }
     int erasenum = 0;
     for (map<string, string>::iterator it = def_value.begin(); it != def_value.end(); it++)
     {
@@ -600,6 +599,18 @@ void constant_propagate_report(int num)
 
 int statement_hoisted()
 {
+    map<string, string> def_value;
+    for (vector<string>::iterator it = modi3add.begin(); it != modi3add.end(); it++)
+    {
+        string code = *it;
+        string op = parse_ins_op(code);
+        if (op == "move")
+        {
+            string def_name = parse_second_param(code);
+            string value = parse_first_param(code);
+            def_value[def_name] = value;
+        }
+    }
     int erasenum = 0;
     int change = 1;
     while (change == 1)
