@@ -24,9 +24,9 @@ int main()
         {
             (*it) = (*it).substr(0, (*it).find("fi")) + "nop";
             vector<string>::iterator nextit = it + 1;
-            if (parse_ins_op(*nextit) == "move" &&
-                parse_ins_param(parse_second_param(*nextit)) == param)
+            if (parse_ins_op(*nextit) == "move")
             {
+                
                 (*nextit) = (*nextit).substr(0, (*nextit).find("move")) + "nop";
             }
         }

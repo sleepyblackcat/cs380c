@@ -4,13 +4,9 @@ THREE_ADDR_TO_C_TRANSLATOR=../../cs380c_lab1/lab1/run.sh
 opt=0
 for option in $*
 do
-	echo $option
 	pos=`echo "$option" | awk 'match($0, "="){print RSTART}'`
-	echo $pos
 	argument=${option:1:pos-2}
-	echo $argument
 	value=${option:pos}
-	echo $value
 	if [ $argument = "backend" ]
 	then
 		if  [ $value = "c" ]
@@ -21,34 +17,25 @@ do
 			../../cs380c_lab1/lab1/run.sh
 		    elif [ $opt = 11 ]
 		    then
-			./cfg_scp_3addr | ${THREE_ADDR_TO_C_TRANSLATOR}
+			./lab3 1 0 0 | ./ssa_to_3addr | ${THREE_ADDR_TO_C_TRANSLATOR}
 		    elif [ $opt = 12 ]
 		    then
-			./cfg_dse_3addr | ${THREE_ADDR_TO_C_TRANSLATOR}
+			/lab3 2 0 0 | ./ssa_to_3addr | ${THREE_ADDR_TO_C_TRANSLATOR}
 		    fi
 		elif [ $value = "cfg" ]
 		then
-		    if [ $opt = 0 ]
-		    then
-			./cfg_ssa
-		    elif [ $opt = 11 ]
-		    then
-			./cfg_scp_3addr | ./cfg_cfg
-		    elif [ $opt = 12 ]
-		    then
-			./cfg_dse_3addr | ./cfg_cfg
-		    fi
+		    ./lab3 0 0 1
 		elif [ $value = "ssa" ]
 		then
 		    if [ $opt = 0 ]
 		    then
-			./cfg_ssa
-		    elif [ $opt = 13 ]
+			./lab3
+		    elif [ $opt = 11 ]
 		    then
-			./cfg_scp_ssa
-		    elif [ $opt = 14 ]
+			./lab3 1 0 0 
+		    elif [ $opt = 12 ]
 		    then
-			./cfg_dce_ssa
+			./lab3 2 0 0
 		    fi
 
 		elif [ $value = "3addr" ]
@@ -58,17 +45,10 @@ do
 			echo 1
 		    elif [ $opt = 11 ]
 		    then
-			./cfg_scp_3addr
+			./lab3 1 0 0 | ./ssa_to_3addr
 		    elif [ $opt = 12 ]
 		    then
-			./cfg_dce_3addr
-		    elif [ $opt = 13 ]
-		    then
-			./cfg_scp_ssa | ./ssa_3add
-		    elif [ $opt = 14 ]
-		    then
-			./cfg_dce_ssa | ./ssa_3add
-
+			./lab3 2 0 0 | ./ssa_to_3addr
 		    fi
 		elif [ $value = "rep" ]
 		then
@@ -77,32 +57,20 @@ do
 			echo 1
 		    elif [ $opt = 11 ]
 		    then
-			./cfg_scp_rep
+			./lab3 1 1 0
 		    elif [ $opt = 12 ]
 		    then
-			./cfg_dce_rep
-		    elif [ $opt = 13 ]
-		    then
-			./cfg_ssa_scp
-		    elif [ $opt = 14 ]
-		    then
-			./cfg_ssa_dce
+			./lab3 2 2 0
 		    fi
 		fi
 	elif [ $argument = "opt" ]
 	then
-		if [ $value = "scp" ]
+		if [ $value = "ssa,scp" ]
 		then
 			opt=11
-		elif [ $value = "dce" ]
-		then
-			opt=12
-		elif [ $value = "ssa,scp" ]
-		then
-			opt=13
 		elif [ $value = "ssa,licm" ]
 		then
-			opt=14
+			opt=12
 		fi		
 	fi
 done

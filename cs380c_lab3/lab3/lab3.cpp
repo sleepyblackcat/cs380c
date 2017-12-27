@@ -13,6 +13,10 @@
 
 using namespace std;
 
+int opt = 0;
+int rep = 0;
+int cfg = 0;
+
 vector<int> renames;
 int recounter = 0;
 set<int> visit;
@@ -41,8 +45,11 @@ void constant_propagate_report(int num);
 int statement_hoisted();
 void statement_hoisted_report(int num);
 
-int main()
+int main(int argc, char *argv[])
 {
+    opt = str2int(argv[1]);
+    rep = str2int(argv[2]);
+    cfg = str2int(argv[3]);
     freopen("./loop_test.3addr", "r", stdin);
     init();
     string buf;
@@ -113,18 +120,36 @@ int main()
                 sort(cfg_goto[i].begin(), cfg_goto[i].end());
             }
 
-            // print_cfg();
+            if (cfg == 1)
+            {
+                print_cfg();
+            }
 
             insert_fi();
 
-            // int num = constant_propagate();
-            // constant_propagate_report(num);
+            if (opt == 1)
+            {
+                int num = constant_propagate();
+                if (rep == 1)
+                {
+                    constant_propagate_report(num);
+                }
+            }
 
-            int num2 = statement_hoisted();
-            statement_hoisted_report(num2);
-
+            if (opt == 2)
+            {
+                int num2 = statement_hoisted();
+                if (rep == 2)
+                {
+                    statement_hoisted_report(num2);
+                }
+            }
             clean_3addr();
-            print_modified_3addr();
+            if (!(cfg == 1 || rep != 0))
+            {
+                print_modified_3addr();
+            }
+
             cfg_goto.clear();
             cfg_start.clear();
             continue;
